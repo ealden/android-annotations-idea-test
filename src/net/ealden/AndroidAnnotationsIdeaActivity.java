@@ -1,15 +1,23 @@
 package net.ealden;
 
 import android.app.Activity;
-import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import com.googlecode.androidannotations.annotations.Click;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.ViewById;
 
-public class AndroidAnnotationsIdeaActivity extends Activity
-{
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+@EActivity(R.layout.main)
+public class AndroidAnnotationsIdeaActivity extends Activity {
+    @ViewById
+    EditText myInput;
+
+    @ViewById(R.id.myTextView)
+    TextView textView;
+
+    @Click
+    void myButton() {
+        String name = myInput.getText().toString();
+        textView.setText("Hello " + name);
     }
 }
