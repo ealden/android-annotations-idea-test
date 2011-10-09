@@ -1,0 +1,56 @@
+buildscript {
+    repositories {
+        mavenRepo name: 'gradle-android-plugin', urls: 'http://jvoegele.com/maven2/'
+    }
+
+    def gradleAndroidPluginVersion = '0.9.9'
+
+    dependencies {
+        classpath "com.jvoegele.gradle.plugins:android-plugin:$gradleAndroidPluginVersion"
+    }
+}
+
+apply plugin: 'android'
+apply plugin: 'idea'
+
+def compatibilityVersion = 1.6
+sourceCompatability = compatibilityVersion
+targetCompatibility = compatibilityVersion
+
+repositories {
+	mavenCentral()
+	mavenRepo urls: 'http://repository.excilys.com/content/repositories/releases/'
+}
+
+def androidAnnotationsVersion = '2.1.2'
+
+dependencies {
+	compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion"
+	compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
+clean {
+    delete 'gen'
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+    }
+    project {
+        javaVersion = 'Android 2.2 Platform'
+    }
+}
+
+androidProcessResources.dependsOn(clean)
+idea.dependsOn(cleanIdea)
+
+defaultTasks 'assemble'
