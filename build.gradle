@@ -18,15 +18,14 @@ sourceCompatability = compatibilityVersion
 targetCompatibility = compatibilityVersion
 
 repositories {
-	mavenCentral()
-	mavenRepo urls: 'http://repository.excilys.com/content/repositories/releases/'
+    mavenCentral()
+    mavenRepo urls: 'http://repository.excilys.com/content/repositories/releases/'
 }
 
 def androidAnnotationsVersion = '2.1.2'
 
 dependencies {
-	compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion"
-	compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
+    compile "com.googlecode.androidannotations:androidannotations:$androidAnnotationsVersion:api"
 }
 
 sourceSets {
